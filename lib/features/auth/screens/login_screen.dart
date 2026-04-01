@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 import '../../../core/components/ui/button.dart';
 import '../../../core/components/ui/input.dart';
 import '../../home/screens/home_screen.dart';
@@ -82,7 +83,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   placeholder: 'name@example.com',
                   controller: _emailController,
                   keyboardType: TextInputType.emailAddress,
-                  prefixIcon: Icons.email_outlined,
+                  prefixIcon: Icon(
+                    PhosphorIcons.mailbox(PhosphorIconsStyle.regular),
+
+                    size: 20,
+                  ),
                   validator: (value) {
                     if (value == null || value.isEmpty)
                       return 'Vui lòng nhập email';
@@ -96,7 +101,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   placeholder: '••••••••',
                   controller: _passwordController,
                   isPassword: true,
-                  prefixIcon: Icons.lock_outline,
+                  prefixIcon: Icon(
+                    PhosphorIcons.lock(PhosphorIconsStyle.regular),
+                    size: 20,
+                  ),
                   validator: (value) {
                     if (value == null || value.isEmpty)
                       return 'Vui lòng nhập mật khẩu';

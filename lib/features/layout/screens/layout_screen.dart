@@ -52,6 +52,7 @@ class LayoutScreen extends StatelessWidget {
             // SEARCH BAR area with Custom SVG (Figma export) and Phosphor Icon
             Stack(
               alignment: Alignment.centerRight,
+
               children: [
                 Container(
                   decoration: BoxDecoration(
@@ -73,15 +74,14 @@ class LayoutScreen extends StatelessWidget {
                       bottom: 16,
                     ),
                     // SỬ DỤNG ICON TỪ FIGMA (SVG)
-                    prefixIcon: SvgPicture.asset(
-                      'assets/icons/custom_search.svg',
-                      width: 20,
-                      height: 20,
+                    prefixIcon: Icon(
+                      PhosphorIcons.magnifyingGlass(PhosphorIconsStyle.regular),
+                      size: 20,
                     ),
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.only(right: 6.0),
+                  padding: const EdgeInsets.only(right: 2),
                   child: Container(
                     width: 44,
                     height: 44,
@@ -106,55 +106,6 @@ class LayoutScreen extends StatelessWidget {
             ),
 
             const SizedBox(height: 32),
-
-            // COMPARISON SECTION
-            Text(
-              'Icon Styles Comparison',
-              style: theme.textTheme.titleMedium?.copyWith(
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            const SizedBox(height: 16),
-
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                _buildIconSample(context, Icons.search, 'Material (Old)'),
-                _buildIconSample(
-                  context,
-                  PhosphorIcons.magnifyingGlass(PhosphorIconsStyle.regular),
-                  'Phosphor (Modern)',
-                ),
-              ],
-            ),
-
-            const SizedBox(height: 24),
-            Center(
-              child: Column(
-                children: [
-                  Text(
-                    'Custom Figma Export (SVG)',
-                    style: theme.textTheme.labelLarge,
-                  ),
-                  const SizedBox(height: 8),
-                  Container(
-                    padding: const EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                      color: theme.colorScheme.surface,
-                      borderRadius: BorderRadius.circular(16),
-                      border: Border.all(
-                        color: theme.colorScheme.outline.withOpacity(0.2),
-                      ),
-                    ),
-                    child: SvgPicture.asset(
-                      'assets/icons/custom_search.svg',
-                      width: 48,
-                      height: 48,
-                    ),
-                  ),
-                ],
-              ),
-            ),
           ],
         ),
       ),

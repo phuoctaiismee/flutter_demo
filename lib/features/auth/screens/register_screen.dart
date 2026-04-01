@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:phosphor_flutter/phosphor_flutter.dart';
 import '../../../core/components/ui/button.dart';
 import '../../../core/components/ui/input.dart';
 import '../data/repositories/auth_repository.dart';
@@ -41,16 +42,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
         setState(() => _isLoading = false);
         if (result['success']) {
           ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Đăng ký thành công! Đăng nhập để tiếp tục.')),
+            const SnackBar(
+              content: Text('Đăng ký thành công! Đăng nhập để tiếp tục.'),
+            ),
           );
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(builder: (context) => const LoginScreen()),
           );
         } else {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(result['message'])),
-          );
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(result['message'])));
         }
       }
     }
@@ -61,9 +64,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
     final theme = Theme.of(context);
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Đăng ký tài khoản'),
-      ),
+      appBar: AppBar(title: const Text('Đăng ký tài khoản')),
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(24.0),
@@ -73,18 +74,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 20),
-                Text(
-                  'Tạo tài khoản mới',
-                  style: theme.textTheme.headlineLarge,
-                ),
+                Text('Tạo tài khoản mới', style: theme.textTheme.headlineLarge),
                 const SizedBox(height: 48),
                 AppInput(
                   label: 'Tên đầy đủ',
                   placeholder: 'Nguyễn Văn A',
                   controller: _nameController,
-                  prefixIcon: Icons.person_outline,
+                  prefixIcon: Icon(
+                    PhosphorIcons.user(PhosphorIconsStyle.regular),
+                    color: theme.colorScheme.surface,
+                    size: 20,
+                  ),
                   validator: (value) {
-                    if (value == null || value.isEmpty) return 'Vui lòng nhập tên';
+                    if (value == null || value.isEmpty)
+                      return 'Vui lòng nhập tên';
                     return null;
                   },
                 ),
@@ -94,9 +97,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   placeholder: 'name@example.com',
                   controller: _emailController,
                   keyboardType: TextInputType.emailAddress,
-                  prefixIcon: Icons.email_outlined,
+                  prefixIcon: Icon(
+                    PhosphorIcons.mailbox(PhosphorIconsStyle.regular),
+                  ),
                   validator: (value) {
-                    if (value == null || value.isEmpty) return 'Vui lòng nhập email';
+                    if (value == null || value.isEmpty)
+                      return 'Vui lòng nhập email';
                     if (!value.contains('@')) return 'Email không hợp lệ';
                     return null;
                   },
@@ -107,9 +113,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   placeholder: '••••••••',
                   controller: _passwordController,
                   isPassword: true,
-                  prefixIcon: Icons.lock_outline,
+                  prefixIcon: Icon(
+                    PhosphorIcons.lock(PhosphorIconsStyle.regular),
+                  ),
                   validator: (value) {
-                    if (value == null || value.isEmpty) return 'Vui lòng nhập mật khẩu';
+                    if (value == null || value.isEmpty)
+                      return 'Vui lòng nhập mật khẩu';
                     if (value.length < 6) return 'Mật khẩu phải từ 6 ký tự';
                     return null;
                   },
